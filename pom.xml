@@ -14,7 +14,7 @@
 	<name>backend</name>
 	<description>restful project using Spring Boot for allThingsByAV</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>18</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
