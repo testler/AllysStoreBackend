@@ -2,7 +2,7 @@ package AllThingsByAV.backend.controllers;
 
 import AllThingsByAV.backend.models.Category;
 import AllThingsByAV.backend.models.Product;
-import AllThingsByAV.backend.repository.MainRepository;
+import AllThingsByAV.backend.repositories.CategoryRepository;
 import com.nimbusds.jose.util.ArrayUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
-    private final MainRepository mainRepository;
+    private final CategoryRepository categoryRepository;
 
     @GetMapping(path="/getCategories")
     public Category[] allCategories(){
@@ -40,8 +40,8 @@ public class CategoryController {
         Product[] allProducts = ArrayUtils.concat(shirtsProducts, sweaterProducts, drinkProducts, accessoriesProducts);
         return allProducts;
     }
-    public CategoryController(MainRepository mainRepository) {
-        this.mainRepository = mainRepository;
+    public CategoryController(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
 

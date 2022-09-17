@@ -21,6 +21,7 @@ public class Order {
     @Column
     private Long comment;
     @Column
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
