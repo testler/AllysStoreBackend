@@ -30,10 +30,10 @@ public class Product {
         this.inStock = inStock;
     }
     public Product() {
-        this.id = Long.valueOf("");
+        this.id = null;
         this.name = "";
         this.image = "";
-        this.description = Long.valueOf("");
+        this.description = null;
         this.price = 0.00;
         this.inStock = false;
     }

@@ -1,19 +1,20 @@
 package AllThingsByAV.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Table;
 ;import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(appliesTo = "Category")
 public class Category {
     @Id
     @GeneratedValue
     private Long id;
+    @Column
     private String image;
+    @Column
     private String name;
     @OneToMany(mappedBy = "category")
     private List<Product> productList;
