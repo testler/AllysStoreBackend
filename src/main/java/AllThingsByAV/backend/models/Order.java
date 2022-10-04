@@ -2,12 +2,13 @@ package AllThingsByAV.backend.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 
 @Entity
-public class Order {
+public class Order implements Serializable{
     @Column
     private String status;
     @Id

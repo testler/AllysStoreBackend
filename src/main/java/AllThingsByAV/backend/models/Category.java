@@ -1,16 +1,16 @@
 package AllThingsByAV.backend.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Table;
-;import java.util.HashSet;
+;import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(appliesTo = "Category")
-public class Category {
+public class Category implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue()
+    @Column(nullable = false, updatable = false)
     private Long id;
     @Column
     private String image;
@@ -51,5 +51,10 @@ public class Category {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "name of category" + this.name;
     }
 }
