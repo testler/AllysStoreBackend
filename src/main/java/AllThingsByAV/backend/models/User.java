@@ -10,17 +10,16 @@ public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders;
-    @Column
+//    @Column
+//    @OneToMany(mappedBy = "user")
+//    private List<Order> orders;
     private String email;
-    @Column
+
     private String password;
 
     public User(Long id, List<Order> orders, String email, String password) {
         this.id = id;
-        this.orders = orders;
+//        this.orders = orders;
         this.email = email;
         this.password = password;
     }
@@ -32,13 +31,13 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
+//    public List<Order> getOrders() {
+//        return orders;
+//    }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+//    public void setOrders(List<Order> orders) {
+//        this.orders = orders;
+//    }
 
     public String getEmail() {
         return email;

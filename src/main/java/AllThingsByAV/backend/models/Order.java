@@ -9,29 +9,29 @@ import java.util.List;
 
 @Entity
 public class Order implements Serializable{
-    @Column
+
     private String status;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+
     private Timestamp timestamp;
-    @Column
-    @ElementCollection
-    private List<Object> items;
-    @Column
+
+//    @ElementCollection
+//    private List<Object> items;
+
     private Long comment;
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name="user_id")
+//    private User user;
 
     public Order(String status, Long id, Timestamp timestamp, List<Object> items, Long comment, User user) {
         this.status = status;
         this.id = id;
         this.timestamp = timestamp;
-        this.items = items;
+//        this.items = items;
         this.comment = comment;
-        this.user = user;
+//        this.user = user;
     }
 
     public Order() {
@@ -57,12 +57,12 @@ public class Order implements Serializable{
         this.timestamp = timestamp;
     }
 
-    public List<Object> getItems() {
-        return items;
-    }
+//    public List<Object> getItems() {
+//        return items;
+//    }
 
     public void setItems(List<Object> items) {
-        this.items = items;
+//        this.items = items;
     }
 
     public Long getComment() {
@@ -73,13 +73,13 @@ public class Order implements Serializable{
         this.comment = comment;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Long getId() {
         return id;

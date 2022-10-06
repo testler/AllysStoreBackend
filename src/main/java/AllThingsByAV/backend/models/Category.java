@@ -10,20 +10,19 @@ import java.util.Set;
 public class Category implements Serializable {
     @Id
     @GeneratedValue()
-    @Column(nullable = false, updatable = false)
     private Long id;
-    @Column
+
     private String image;
-    @Column
+
     private String name;
-    @OneToMany(mappedBy = "category")
-    private List<Product> productList;
+//    @OneToMany(mappedBy = "category")
+//    private List<Product> productList;
 
     public Category(Long id, String image, String name, List<Product> productList) {
         this.id = id;
         this.image = image;
         this.name = name;
-        this.productList = productList;
+//        this.productList = productList;
     }
 
     public Category() {
