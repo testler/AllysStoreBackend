@@ -3,41 +3,46 @@ package AllThingsByAV.backend.models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Column
-//    @OneToMany(mappedBy = "user")
-//    private List<Order> orders;
+    @Column
     private String email;
-
+    @Column
     private String password;
+    @Column
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders;
+    @Column
+    @ElementCollection
+    @CollectionTable(
+            name="CartItem",
+            joinColumns=@JoinColumn(name="user_id")
+    )
+    private Set<CartItem> cart;
 
-    public User(Long id, List<Order> orders, String email, String password) {
+    public User(Long id, String email, String password, Set<Order> orders, Set<CartItem> cart) {
         this.id = id;
-//        this.orders = orders;
         this.email = email;
         this.password = password;
+        this.orders = orders;
+        this.cart = cart;
     }
 
     public User() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public List<Order> getOrders() {
-//        return orders;
-//    }
-
-//    public void setOrders(List<Order> orders) {
-//        this.orders = orders;
-//    }
 
     public String getEmail() {
         return email;
@@ -55,7 +60,19 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<CartItem> getCart() {
+        return cart;
+    }
+
+    public void setCart(Set<CartItem> cart) {
+        this.cart = cart;
     }
 }

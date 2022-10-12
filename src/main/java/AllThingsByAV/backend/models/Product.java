@@ -7,21 +7,21 @@ import java.io.Serializable;
 @Entity
 public class Product implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Long id;
-
+    @Column
     private final String name;
-
+    @Column
     private final String image;
-
+    @Column
     private final Long description;
-
+    @Column
     private final Double price;
-
+    @Column
     private final Boolean inStock;
-//    @ManyToOne
-//    @JoinColumn(name="category_id")
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
 
     public Product(Long id, String name, String picture, Long description, Double price, Boolean inStock) {
         this.id = id;

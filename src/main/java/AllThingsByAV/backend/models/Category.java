@@ -1,28 +1,29 @@
 package AllThingsByAV.backend.models;
 
 import jakarta.persistence.*;
-;import java.io.Serializable;
-import java.util.HashSet;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Category implements Serializable {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
-
+    @Column
     private String image;
-
+    @Column
     private String name;
-//    @OneToMany(mappedBy = "category")
-//    private List<Product> productList;
+    @Column
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
 
-    public Category(Long id, String image, String name, List<Product> productList) {
+    public Category(Long id, String image, String name, Set<Product> products) {
         this.id = id;
         this.image = image;
         this.name = name;
-//        this.productList = productList;
+        this.products = products;
     }
 
     public Category() {

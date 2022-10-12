@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -12,26 +13,22 @@ public class Order implements Serializable{
 
     private String status;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column
     private Timestamp timestamp;
-
-//    @ElementCollection
-//    private List<Object> items;
-
+    @Column
     private Long comment;
-//    @ManyToOne
-//    @JoinColumn(name="user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
-    public Order(String status, Long id, Timestamp timestamp, List<Object> items, Long comment, User user) {
+    public Order(String status, Long id, Timestamp timestamp, Long comment, User user) {
         this.status = status;
         this.id = id;
         this.timestamp = timestamp;
-//        this.items = items;
         this.comment = comment;
-//        this.user = user;
+        this.user = user;
     }
 
     public Order() {
@@ -43,6 +40,10 @@ public class Order implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
@@ -57,14 +58,6 @@ public class Order implements Serializable{
         this.timestamp = timestamp;
     }
 
-//    public List<Object> getItems() {
-//        return items;
-//    }
-
-    public void setItems(List<Object> items) {
-//        this.items = items;
-    }
-
     public Long getComment() {
         return comment;
     }
@@ -73,15 +66,11 @@ public class Order implements Serializable{
         this.comment = comment;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
 
-    public Long getId() {
-        return id;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
