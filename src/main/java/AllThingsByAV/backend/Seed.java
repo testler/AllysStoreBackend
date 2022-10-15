@@ -19,4 +19,6 @@ public class Seed {
             new Category(Long.valueOf(4), "", "accessories", Set.of(accessoriesProducts)),
             new Category(Long.valueOf(5), "", "All Items", Set.of(allProducts))
     };
+
 }
+

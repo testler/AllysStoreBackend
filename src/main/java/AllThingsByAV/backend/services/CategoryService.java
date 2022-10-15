@@ -3,20 +3,12 @@ package AllThingsByAV.backend.services;
 
 import AllThingsByAV.backend.models.Category;
 
-public class CategoryService {
-    Category getAll(){
-        return null;
-    }
-    Category create(Category category) {
-        return null;
-    }
-    Category get(Long id){
-        return null;
-    }
-    Category update(Category category){
-        return null;
-    }
-    Boolean delete(Long id){
-        return null;
-    }
+
+public interface CategoryService {
+
+    Object[] getAll();
+    Category create(Category category);
+    Category get(Long id);
+    Category update(Category category);
+    Boolean delete(Long id);
 }

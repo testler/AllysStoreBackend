@@ -2,18 +2,11 @@ package AllThingsByAV.backend.services;
 
 import AllThingsByAV.backend.models.Order;
 
-public class OrderService {
+public interface OrderService {
 
-    Order create(Order order) {
-        return null;
-    }
-    Order get(Long id){
-        return null;
-    }
-    Order update(Order order){
-        return null;
-    }
-    Boolean delete(Long id){
-        return null;
-    }
+    Object[] getAll();
+    Order create(Order order);
+    Order get(Long id);
+    Order update(Order order);
+    Boolean delete(Long id);
 }
