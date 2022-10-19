@@ -1,7 +1,10 @@
 package AllThingsByAV.backend.models;
 
 import jakarta.persistence.*;
+import net.minidev.json.annotate.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,9 +18,9 @@ public class Category implements Serializable {
     private String image;
     @Column
     private String name;
-    @Column
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<>();
 
     public Category(Long id, String image, String name, Set<Product> products) {
         this.id = id;

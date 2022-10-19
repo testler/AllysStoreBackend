@@ -8,36 +8,32 @@ import java.io.Serializable;
 public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
+    private Long id;
     @Column
-    private final String name;
+    private String name;
     @Column
-    private final String image;
+    private String image;
     @Column
-    private final Long description;
+    private String description;
     @Column
-    private final Double price;
+    private Double price;
     @Column
-    private final Boolean inStock;
-    @ManyToOne
-    @JoinColumn(name="category_id")
+    private Boolean inStock;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="category_id", referencedColumnName = "id")
     private Category category;
 
-    public Product(Long id, String name, String picture, Long description, Double price, Boolean inStock) {
+    public Product(Long id, String name, String image, String description, Double price, Boolean inStock) {
         this.id = id;
         this.name = name;
-        this.image = picture;
+        this.image = image;
         this.description = description;
         this.price = price;
         this.inStock = inStock;
+        this.category = null;
     }
+
     public Product() {
-        this.id = null;
-        this.name = "";
-        this.image = "";
-        this.description = null;
-        this.price = 0.00;
-        this.inStock = false;
     }
 
     public Long getId() {
