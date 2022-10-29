@@ -18,14 +18,6 @@ public class ProductController {
 
     @GetMapping("/")
     public Object[] allProducts(){
-        productService.create(new Product(Long.valueOf(1), "shirt 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(2), "shirt 2", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(3), "sweater 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(4), "sweater 2", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(5), "drink ware 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(6), "drink ware 2", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(7), "accessory 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(8), "accessory 2", "", "this is description", 99.99, true));
         return productService.getAll();
     }
 }

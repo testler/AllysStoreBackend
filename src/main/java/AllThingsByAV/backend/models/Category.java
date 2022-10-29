@@ -18,9 +18,10 @@ public class Category implements Serializable {
     private String image;
     @Column
     private String name;
-    @JsonIgnore
+
+    @Column(nullable = false)
     @OneToMany(mappedBy = "category")
-    private Set<Product> products = new HashSet<>();
+    public Set<Product> products = new HashSet<>();
 
     public Category(Long id, String image, String name, Set<Product> products) {
         this.id = id;
@@ -30,6 +31,18 @@ public class Category implements Serializable {
     }
 
     public Category() {
+    }
+
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 
     public void setId(Long id) {

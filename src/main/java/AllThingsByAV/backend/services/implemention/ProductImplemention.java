@@ -6,6 +6,8 @@ import AllThingsByAV.backend.services.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ProductImplemention implements ProductService {
@@ -17,7 +19,7 @@ public class ProductImplemention implements ProductService {
 
     @Override
     public Object[] getAll() {
-        return productRepository.findAll().toArray();
+        return new List[]{productRepository.findAll()};
     }
 
     @Override

@@ -1,6 +1,7 @@
 package AllThingsByAV.backend.services.implemention;
 
 import AllThingsByAV.backend.models.Category;
+import AllThingsByAV.backend.models.Product;
 import AllThingsByAV.backend.repositories.CategoryRepository;
 import AllThingsByAV.backend.services.CategoryService;
 import jakarta.transaction.Transactional;
@@ -14,6 +15,7 @@ public class CategoryImplemention implements CategoryService {
     public CategoryImplemention(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
+
 
     @Override
     public Object[] getAll() {
