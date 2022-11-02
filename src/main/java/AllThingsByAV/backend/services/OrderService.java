@@ -1,7 +1,9 @@
 package AllThingsByAV.backend.services;
 
 import AllThingsByAV.backend.models.Order;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface OrderService {
 
     Object[] getAll();

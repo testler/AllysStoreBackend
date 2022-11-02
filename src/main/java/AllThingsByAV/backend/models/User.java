@@ -1,11 +1,13 @@
 package AllThingsByAV.backend.models;
 
 import jakarta.persistence.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +17,13 @@ public class User implements Serializable{
     @Column
     private String password;
     @Column
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Order> orders;
     @Column
     @ElementCollection
     @CollectionTable(
-            name="CartItem",
-            joinColumns=@JoinColumn(name="user_id")
+            name="CartItem"
     )
     private Set<CartItem> cart;
 

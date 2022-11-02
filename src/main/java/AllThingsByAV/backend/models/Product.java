@@ -1,10 +1,13 @@
 package AllThingsByAV.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import java.io.Serializable;
 
 @Entity
+@Table(name = "product")
 public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +22,21 @@ public class Product implements Serializable{
     private Double price;
     @Column
     private Boolean inStock;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="category_id", referencedColumnName = "id")
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Product() {
+    }
 
     public Product(Long id, String name, String image, String description, Double price, Boolean inStock) {
         this.id = id;
@@ -30,11 +45,8 @@ public class Product implements Serializable{
         this.description = description;
         this.price = price;
         this.inStock = inStock;
-        this.category = null;
     }
 
-    public Product() {
-    }
 
     public Long getId() {
         return id;
@@ -82,13 +94,5 @@ public class Product implements Serializable{
 
     public void setInStock(Boolean inStock) {
         this.inStock = inStock;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }

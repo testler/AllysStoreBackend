@@ -1,6 +1,7 @@
 package AllThingsByAV.backend.models;
 
 import jakarta.persistence.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -9,26 +10,33 @@ import java.util.Set;
 
 
 @Entity
+@Table(name = "order")
 public class Order implements Serializable{
-
-    private String status;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private Timestamp timestamp;
+    private String status;
     @Column
-    private Long comment;
+    private String comment;
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    public Order(String status, Long id, Timestamp timestamp, Long comment, User user) {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+    public Order(String status, Long id, Timestamp timestamp, String comment) {
         this.status = status;
         this.id = id;
-        this.timestamp = timestamp;
         this.comment = comment;
-        this.user = user;
     }
 
     public Order() {
@@ -50,27 +58,11 @@ public class Order implements Serializable{
         this.id = id;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public Long getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(Long comment) {
+    public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
