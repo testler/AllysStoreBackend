@@ -1,9 +1,12 @@
 package AllThingsByAV.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,23 +19,25 @@ public class User implements Serializable{
     private String email;
     @Column
     private String password;
-    @Column
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private Set<Order> orders;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST)
+    private List<Order> orders= new ArrayList<>();
     @Column
     @ElementCollection
     @CollectionTable(
             name="CartItem"
     )
-    private Set<CartItem> cart;
+    private List<CartItem> cart = new ArrayList<>();
 
-    public User(Long id, String email, String password, Set<Order> orders, Set<CartItem> cart) {
-        this.id = id;
+    public User(String email, String password, List<CartItem> cart) {
         this.email = email;
         this.password = password;
-        this.orders = orders;
         this.cart = cart;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public User() {
@@ -62,19 +67,19 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public Set<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
-    public Set<CartItem> getCart() {
+    public List<CartItem> getCart() {
         return cart;
     }
 
-    public void setCart(Set<CartItem> cart) {
+    public void setCart(List<CartItem> cart) {
         this.cart = cart;
     }
 }

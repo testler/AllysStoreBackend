@@ -1,5 +1,6 @@
 package AllThingsByAV.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -19,8 +20,8 @@ public class Order implements Serializable{
     private String status;
     @Column
     private String comment;
-    @JsonIgnore
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

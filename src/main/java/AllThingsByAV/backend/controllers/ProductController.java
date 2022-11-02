@@ -25,5 +25,26 @@ public class ProductController {
     public Object[] allProducts(){
         return productService.getAll();
     }
-
+    @PutMapping("/assignCategories")
+    public Boolean assignCategories(){
+        this.assignCategoryToProduct(1L, 1L);
+        this.assignCategoryToProduct(1L, 2L);
+        this.assignCategoryToProduct(2L, 3L);
+        this.assignCategoryToProduct(2L, 4L);
+        this.assignCategoryToProduct(3L, 5L);
+        this.assignCategoryToProduct(3L, 6L);
+        this.assignCategoryToProduct(4L, 7L);
+        this.assignCategoryToProduct(4L, 8L);
+        return true;
+    }
+    @PutMapping("/{productId}/category/{categoryId}")
+    Product assignCategoryToProduct(
+            @PathVariable Long categoryId,
+            @PathVariable Long productId
+    ){
+        Category category = categoryService.get(categoryId);
+        Product product = productService.get(productId);
+        product.setCategory(category);
+        return productService.update(product);
+    }
 }

@@ -6,6 +6,8 @@ import AllThingsByAV.backend.services.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class UserImplemention implements UserService {
@@ -13,6 +15,11 @@ public class UserImplemention implements UserService {
 
     public UserImplemention(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 
     @Override

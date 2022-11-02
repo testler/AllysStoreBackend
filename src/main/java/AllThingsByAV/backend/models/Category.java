@@ -1,6 +1,7 @@
 package AllThingsByAV.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -21,23 +22,21 @@ public class Category implements Serializable {
     private String image;
     @Column
     private String name;
-
-
-    @OneToMany(mappedBy = "category")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "category",cascade = CascadeType.PERSIST)
     private List<Product> products;
 
+    public Category( String image, String name) {
+        this.image = image;
+        this.name = name;
+        this.products = new ArrayList<>();
+    }
 
     public Category(Long id, String image, String name) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.products = new ArrayList<>();
-    }
-    public Category(Long id, String image, String name, List<Product> products) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.products = products;
     }
     public Category() {
     }

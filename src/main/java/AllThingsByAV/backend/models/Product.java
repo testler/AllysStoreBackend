@@ -22,10 +22,11 @@ public class Product implements Serializable{
     private Double price;
     @Column
     private Boolean inStock;
-
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
 
     public Category getCategory() {
         return category;
