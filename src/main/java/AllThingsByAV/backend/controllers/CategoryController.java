@@ -41,7 +41,6 @@ public class CategoryController {
     }
     @GetMapping(path="/")
     public Object[] allCategories(){
-
         return categoryService.getAll();
     }
     @GetMapping(path="/get/{id}")

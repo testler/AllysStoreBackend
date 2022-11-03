@@ -42,7 +42,9 @@ public class Order implements Serializable{
 
     public Order() {
     }
+    public void checkout(){
 
+    }
     public String getStatus() {
         return status;
     }
