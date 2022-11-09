@@ -2,10 +2,8 @@ package AllThingsByAV.backend.controllers;
 
 import AllThingsByAV.backend.models.User;
 import AllThingsByAV.backend.services.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.squareup.square.models.Money;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,7 +11,6 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -21,7 +18,11 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAll();
     }
-
+    @GetMapping("/login")
+    public User login(@RequestBody Object posU){
+        System.out.println(posU);
+        return null;
+    }
     @PostMapping(path = "/create")
     public void createUser(
             String email,

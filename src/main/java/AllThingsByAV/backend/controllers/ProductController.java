@@ -25,6 +25,10 @@ public class ProductController {
     public Object[] allProducts(){
         return productService.getAll();
     }
+    @GetMapping("/get/{productID}")
+    Product getProduct(@PathVariable Long productId){
+        return productService.get(productId);
+    }
     @PutMapping("/assignCategories")
     public Boolean assignCategories(){
         this.assignCategoryToProduct(1L, 1L);

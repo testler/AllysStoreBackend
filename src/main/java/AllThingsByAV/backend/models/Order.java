@@ -34,10 +34,11 @@ public class Order implements Serializable{
     }
 
 
-    public Order(String status, Long id, Timestamp timestamp, String comment) {
+    public Order(String status, Long id, String comment, User user) {
         this.status = status;
         this.id = id;
         this.comment = comment;
+        this.user = user;
     }
 
     public Order() {
