@@ -1,7 +1,6 @@
 package AllThingsByAV.backend.controllers;
 
 import AllThingsByAV.backend.models.CartItem;
-import AllThingsByAV.backend.services.OrderService;
 import AllThingsByAV.backend.services.ProductService;
 import com.squareup.square.Environment;
 import com.squareup.square.SquareClient;
@@ -14,24 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
-public class OrderController {
-    private final OrderService orderService;
+@RequestMapping("/checkout")
+public class CheckoutController {
     private final ProductService productService;
 
 
-    public OrderController(OrderService orderService, ProductService productService) {
-        this.orderService = orderService;
+    public CheckoutController(ProductService productService) {
         this.productService = productService;
     }
-    @GetMapping("/getTestCartItem")
-    public List<CartItem> test(){
-        List<CartItem> list = new ArrayList<>();
-        list.add(new CartItem(1L,1));
-        list.add(new CartItem(2L,2));
-        return list;
-    }
-    @PostMapping("/guest/checkout")
+    @GetMapping("/getLink")
     @Async
     public CreatePaymentLinkResponse checkoutCart(@RequestBody List<CartItem> cart) throws InterruptedException {
         Integer totalPrice = 0;
