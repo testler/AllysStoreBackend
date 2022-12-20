@@ -8,6 +8,7 @@ import AllThingsByAV.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -21,22 +22,22 @@ public class CategoryController {
     private final ProductService productService;
     @GetMapping(path="/start")
     public Boolean startData(){
-        productService.create(new Product(Long.valueOf(1), "shirt 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(2), "shirt 2", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(3), "sweater 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(4), "sweater 2", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(5), "drink ware 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(6), "drink ware 2", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(7), "accessory 1", "", "this is description", 99.99, true));
-        productService.create(new Product(Long.valueOf(8), "accessory 2", "", "this is description", 99.99, true));
-        Category cat1 = new Category(Long.valueOf(1), "", "Shirts");
-        Category cat2 = new Category(Long.valueOf(2), "", "Sweaters");
-        Category cat3 = new Category(Long.valueOf(3), "", "Drink ware");
-        Category cat4 = new Category(Long.valueOf(4), "", "accessories");
-        categoryService.create(cat1);
-        categoryService.create(cat2);
-        categoryService.create(cat3);
-        categoryService.create(cat4);
+//        productService.create(new Product(Long.valueOf(1), "shirt 1", new File("/home/testler/CompSciProjects/java/backend/src/main/resources/static/shirts.jpeg"), "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(2), "shirt 2", "", "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(3), "sweater 1", "", "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(4), "sweater 2", "", "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(5), "drink ware 1", "", "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(6), "drink ware 2", "", "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(7), "accessory 1", "", "this is description", 99.99, true));
+//        productService.create(new Product(Long.valueOf(8), "accessory 2", "", "this is description", 99.99, true));
+//        Category cat1 = new Category(Long.valueOf(1), "/home/testler/CompSciProjects/java/backend/src/main/resources/static/shirts.jpeg", "Shirts");
+//        Category cat2 = new Category(Long.valueOf(2), "/home/testler/CompSciProjects/java/backend/src/main/resources/static/sweatshirts.jpeg", "Sweaters");
+//        Category cat3 = new Category(Long.valueOf(3), "/home/testler/CompSciProjects/java/backend/src/main/resources/static/drinkWare.jpeg", "Drink ware");
+//        Category cat4 = new Category(Long.valueOf(4), "/home/testler/CompSciProjects/java/backend/src/main/resources/static/accerories.jpeg", "accessories");
+//        categoryService.create(cat1);
+//        categoryService.create(cat2);
+//        categoryService.create(cat3);
+//        categoryService.create(cat4);
         return true;
     }
     @GetMapping(path="/")

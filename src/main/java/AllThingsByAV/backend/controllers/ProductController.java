@@ -8,6 +8,10 @@ import AllThingsByAV.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.util.List;
+
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -28,6 +32,10 @@ public class ProductController {
     @GetMapping("/get/{productID}")
     Product getProduct(@PathVariable Long productId){
         return productService.get(productId);
+    }
+    @PostMapping("/new")
+    Product createProduct(String name, List<File> images, String description, Double price, int stock){
+        return productService.create(new Product(name,images,description,price,stock));
     }
     @PutMapping("/assignCategories")
     public Boolean assignCategories(){

@@ -2,9 +2,14 @@ package AllThingsByAV.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import net.minidev.json.annotate.JsonIgnore;
+import org.hibernate.annotations.ListIndexJavaType;
+import org.hibernate.annotations.ListIndexJdbcType;
+import org.hibernate.annotations.ListIndexJdbcTypeCode;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.io.File;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -15,13 +20,14 @@ public class Product implements Serializable{
     @Column
     private String name;
     @Column
-    private String image;
+    @ElementCollection
+    private List<File> imageArr;
     @Column
     private String description;
     @Column
     private Double price;
     @Column
-    private Boolean inStock;
+    private int stock;
     @JsonBackReference
     @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -39,13 +45,12 @@ public class Product implements Serializable{
     public Product() {
     }
 
-    public Product(Long id, String name, String image, String description, Double price, Boolean inStock) {
-        this.id = id;
+    public Product(String name, List<File> imageArr, String description, Double price, int stock) {
         this.name = name;
-        this.image = image;
+        this.imageArr =  imageArr;
         this.description = description;
         this.price = price;
-        this.inStock = inStock;
+        this.stock = stock;
     }
 
 
@@ -65,13 +70,14 @@ public class Product implements Serializable{
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public List<File> getImageArr() {
+        return this.imageArr;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageArr(List<File> images) {
+        this.imageArr = imageArr;
     }
+    public void addImagesToImageArr(List<File> images){this.imageArr.addAll(images);}
 
     public String getDescription() {
         return description;
@@ -89,11 +95,11 @@ public class Product implements Serializable{
         this.price = price;
     }
 
-    public Boolean getInStock() {
-        return inStock;
+    public int getStock() {
+        return stock;
     }
 
-    public void setInStock(Boolean inStock) {
-        this.inStock = inStock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
