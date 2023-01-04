@@ -7,6 +7,7 @@ import AllThingsByAV.backend.services.CategoryService;
 import AllThingsByAV.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
@@ -34,7 +35,8 @@ public class ProductController {
         return productService.get(productId);
     }
     @PostMapping("/new")
-    Product createProduct(String name, List<File> images, String description, Double price, int stock){
+    Product createProduct(@RequestParam String name, @RequestParam List<MultipartFile> images, @RequestParam String description, @RequestParam Double price, @RequestParam int stock){
+        System.out.print("hit");
         return productService.create(new Product(name,images,description,price,stock));
     }
     @PutMapping("/assignCategories")

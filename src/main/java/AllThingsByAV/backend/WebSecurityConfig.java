@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-@EnableWebSecurity
 @ComponentScan("AllThingsByAv.backend")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
@@ -20,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().
-                antMatchers("/product","/Category","/checkout").permitAll()
+                antMatchers("/product/new","/Category","/checkout").permitAll()
                 .antMatchers("/admin").authenticated()
                 .and()
                 .headers()
