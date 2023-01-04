@@ -2,14 +2,18 @@ package AllThingsByAV.backend.controllers;
 
 
 import AllThingsByAV.backend.models.Category;
+import AllThingsByAV.backend.models.Image;
 import AllThingsByAV.backend.models.Product;
 import AllThingsByAV.backend.services.CategoryService;
+import AllThingsByAV.backend.services.ImageService;
 import AllThingsByAV.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,10 +24,13 @@ public class ProductController {
     private final ProductService productService;
     @Autowired
     private final CategoryService categoryService;
+    @Autowired
+    private final ImageService imageService;
 
-    public ProductController(ProductService productService, CategoryService categoryService) {
+    public ProductController(ProductService productService, CategoryService categoryService, ImageService imageService) {
         this.productService = productService;
         this.categoryService = categoryService;
+        this.imageService = imageService;
     }
 
     @GetMapping("/")
@@ -36,8 +43,16 @@ public class ProductController {
     }
     @PostMapping("/new")
     Product createProduct(@RequestParam String name, @RequestParam List<MultipartFile> images, @RequestParam String description, @RequestParam Double price, @RequestParam int stock){
-        System.out.print("hit");
-        return productService.create(new Product(name,images,description,price,stock));
+        List<Image> imgArr = new ArrayList<>();
+        images.forEach((image) -> {
+            try {
+                imgArr.add(imageService.create(new Image(image)));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        return productService.create(new Product(name,imgArr,description,price,stock));
     }
     @PutMapping("/assignCategories")
     public Boolean assignCategories(){

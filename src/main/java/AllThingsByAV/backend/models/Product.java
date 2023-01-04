@@ -1,7 +1,13 @@
 package AllThingsByAV.backend.models;
 
+import AllThingsByAV.backend.repositories.ImageRepository;
+import AllThingsByAV.backend.services.ImageService;
+import AllThingsByAV.backend.services.implemention.ImageImplemention;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcType;
+import org.junit.Ignore;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -11,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name="product")
 public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,24 +50,12 @@ public class Product implements Serializable{
     public Product() {
     }
 
-    public Product(String name, List<MultipartFile> imageArr, String description, Double price, int stock) {
+    public Product(String name, List<Image> imageArr, String description, Double price, int stock) {
         this.name = name;
-        this.imageArr = createAndSave(imageArr);
+        this.imageArr = imageArr;
         this.description = description;
         this.price = price;
         this.stock = stock;
-    }
-    public List<Image> createAndSave(List<MultipartFile> imageArr){
-        List<Image> arr = new ArrayList<>();
-        imageArr.forEach((image) -> {
-            try {
-                arr.add(new Image(image));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        return arr;
     }
     public Long getId() {
         return id;
@@ -77,20 +71,6 @@ public class Product implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public void setImageArr(List<File> images) {
-        this.imageArr = imageArr;
-    }
-    public void addImagesToImageArr(List<MultipartFile> images){
-        images.forEach((newImage) -> {
-            try {
-                this.imageArr.add(new Image(newImage));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
     }
 
     public String getDescription() {

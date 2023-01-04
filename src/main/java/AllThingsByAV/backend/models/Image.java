@@ -6,23 +6,24 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Optional;
 @Entity
-
-
+@Table(name="image")
 public class Image {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Column
     private String name;
+    @Column
     private String type;
     @Lob
     @Column(name = "imageData", length = 1000)
     private byte[] imageData;
 
+
     public Image() {
 
     }
+
     public Image(MultipartFile image) throws IOException {
         this.name = image.getOriginalFilename();
         this.type = image.getContentType();
