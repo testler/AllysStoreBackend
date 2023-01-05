@@ -3,10 +3,15 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.security.Key;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/admin")
 public class AdminController {
-    // We need a signing key, so we'll create one just for this example. Usually
-// the key would be read from your application configuration instead.
-
-//    String jws = Jwts.builder().setSubject("Joe").signWith(key).compact();
+    @GetMapping("/")
+    public String test(){
+        return "You should only see this if you are an admin";
+    }
 }

@@ -1,4 +1,4 @@
-package AllThingsByAV.backend;
+package AllThingsByAV.backend.config;
 
 import com.zaxxer.hikari.*;
 import org.springframework.beans.factory.annotation.Value;
