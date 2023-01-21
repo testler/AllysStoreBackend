@@ -18,21 +18,22 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @Column
-    private String image;
+
+    @OneToOne
+    private Image image;
     @Column
     private String name;
     @JsonManagedReference
     @OneToMany(mappedBy = "category",cascade = CascadeType.PERSIST)
     private List<Product> products;
 
-    public Category( String image, String name) {
+    public Category( Image image, String name) {
         this.image = image;
         this.name = name;
         this.products = new ArrayList<>();
     }
 
-    public Category(Long id, String image, String name) {
+    public Category(Long id, Image image, String name) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -47,7 +48,7 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public void setImage(String image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -55,7 +56,7 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public String getImage() {
+    public Image getImage() {
         return image;
     }
 
